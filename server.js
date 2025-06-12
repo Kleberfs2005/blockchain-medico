@@ -1,7 +1,10 @@
 //Usado para teste de conexão com o MongoDB Atlas
 require('dotenv').config()
 process.removeAllListeners('warning') // Opcional - suprime warnings não críticos
-
+//****************Código somente para teste de conexão com o DNS LOCAL ***************
+//const dns = require('dns')
+//dns.setServers(['8.8.8.8', '8.8.4.4'])
+// *************************************************************** */
 const express = require('express')
 const mongoose = require('mongoose')
 const { Blockchain, Block } = require('./blockchain') // Importando a classe Blockchain e o modelo Block
