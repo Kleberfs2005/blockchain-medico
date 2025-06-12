@@ -12,6 +12,7 @@ const blockSchema = new mongoose.Schema({
 const Block = mongoose.model('Block', blockSchema)
 
 // 2. Classe Blockchain
+//Esta classe encapsula a lógica para criar, gerenciar e validar a cadeia de blocos.
 class Blockchain {
   constructor() {
     this.chain = []
