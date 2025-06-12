@@ -1,9 +1,11 @@
+//Usado para teste de conexão com o MongoDB Atlas
+require('dotenv').config()
+
 const express = require('express')
 const mongoose = require('mongoose')
-const Blockchain = require('./blockchain')
 const { Blockchain, Block } = require('./blockchain') // Importando a classe Blockchain e o modelo Block
-
 const app = express()
+
 app.use(express.json())
 
 // Conexão aprimorada com tratamento de erros

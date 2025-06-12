@@ -99,5 +99,4 @@ class Blockchain {
   }
 }
 
-module.exports = Blockchain
-module.exports.Block = Block // Para usar Block.find()
+module.exports = { Blockchain, Block }
