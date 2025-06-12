@@ -18,10 +18,16 @@ class Blockchain {
     this.pendingData = []
   }
 
+  //Atualizado o blockchain.js para garantir inicialização correta:
   async initialize() {
-    await this.loadChainFromDB()
-    if (this.chain.length === 0) {
-      await this.createGenesisBlock()
+    try {
+      await this.loadChainFromDB()
+      if (this.chain.length === 0) {
+        await this.createGenesisBlock()
+      }
+      console.log('Blockchain carregada com', this.chain.length, 'blocos')
+    } catch (err) {
+      console.error('Erro ao inicializar blockchain:', err)
     }
   }
 
@@ -94,3 +100,4 @@ class Blockchain {
 }
 
 module.exports = Blockchain
+module.exports.Block = Block // Para usar Block.find()
