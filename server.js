@@ -1,5 +1,6 @@
 //Usado para teste de conexão com o MongoDB Atlas
 require('dotenv').config()
+process.removeAllListeners('warning') // Opcional - suprime warnings não críticos
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -8,6 +9,7 @@ const app = express()
 
 app.use(express.json())
 
+mongoose.set('strictQuery', false) // ou true, conforme sua necessidade
 // Conexão aprimorada com tratamento de erros
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -15,6 +17,8 @@ mongoose
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000,
     socketTimeoutMS: 45000,
+    retryWrites: true, // Correção erro R01
+    w: 'majority', // Correção erro R01
   })
   .then(async () => {
     console.log('Conectado ao MongoDB Atlas!')
@@ -23,7 +27,6 @@ mongoose
     const blockchain = new Blockchain()
     await blockchain.initialize()
     console.log('Blockchain inicializada')
-
     // Rotas (mantidas do serveroriginal.js)
     app.post('/prontuario', async (req, res) => {
       const { pacienteId, medico, informacoes } = req.body
